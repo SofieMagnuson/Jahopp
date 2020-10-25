@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour
         pullingUp = Resources.Load<AnimationClip>("Player_pulling_up");
         anim = GetComponent<Animator>();
 
-        
+        jumpTimer = 2.0f;
         playerSpeed = 4f;
         accelarationTimer = 0;
         playerJump = 40f;
