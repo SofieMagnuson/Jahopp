@@ -51,7 +51,7 @@ public class PlayerScript : MonoBehaviour
         {
             mySR.flipX = false;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 1))
         {
             isRolling = true;
         }
