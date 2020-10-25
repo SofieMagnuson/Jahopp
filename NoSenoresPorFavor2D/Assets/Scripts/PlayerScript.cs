@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// konstant rulling funkar inte, leta upp ett sätt där man inte behöver använda sig utav rigid body 
+
 public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D myRB;
     public SpriteRenderer mySR;
-    public float playerSpeed, playerJump, jumpTimer, animTimer, accelarationTimer;
+    public float playerSpeed, playerJump, jumpTimer, animTimer, rollingTimer;
     public bool isJumping = false;
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
@@ -21,9 +23,9 @@ public class PlayerScript : MonoBehaviour
         pullingUp = Resources.Load<AnimationClip>("Player_pulling_up");
         anim = GetComponent<Animator>();
 
-        
+        jumpTimer = 1.5f;
         playerSpeed = 4f;
-        accelarationTimer = 0;
+        rollingTimer = 0.5f;
         playerJump = 40f;
         isRolling = false;
 
@@ -49,72 +51,56 @@ public class PlayerScript : MonoBehaviour
         {
             mySR.flipX = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isJumping == false)
-        {
-            myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
-            isJumping = true;
-            jumpTimer = 0.9f;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && isRolling == false)
+        if (Input.GetKey(KeyCode.Space))
         {
             isRolling = true;
-            playerSpeed = 6f;
-           
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isRolling == true)
+        else
         {
             isRolling = false;
             playerSpeed = 4f;
-            accelarationTimer = 0;
+        }
+        if (Input.GetKeyUp(KeyCode.Space) && jumpTimer <= 0)
+        {
+            myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
+        }
+        if (rollingTimer <= 0)
+        {
+            playerSpeed = 8f;
         }
 
         if (isRolling == true)
         {
-            accelarationTimer += Time.deltaTime;
-            if (accelarationTimer > 2)
-            {
-                playerSpeed = 7f;
-            }
-            if (accelarationTimer > 4)
-            {
-                playerSpeed = 8f;
-            }
-            if (accelarationTimer > 6)
-            {
-                playerSpeed = 9f;
-            }
-            if (accelarationTimer > 8)
-            {
-                playerSpeed = 10f;
-            }
+            jumpTimer -= Time.deltaTime;
+            rollingTimer -= Time.deltaTime;
+        }
+        else
+        {
+            jumpTimer = 1.5f;
+            rollingTimer = 0.5f;
         }
 
         if (isJumping == true)
         {
-            jumpTimer -= Time.deltaTime;
         }
-        if (jumpTimer <= 0)
-        {
-            isJumping = false;
-        }
-        if (isGrabbingLedge == true)
-        {
-            //anim.SetBool("isHoldingLedge", true); 
-            gameObject.GetComponent<Animator>().enabled = true;
-            animTimer = 0.7f;
-            isPlayingAnim = true;
-        }
-        if (isPlayingAnim == true)
-        {
-            animTimer -= Time.deltaTime;
-        }
-        if (animTimer <= 0)
-        {
-            //anim.SetBool("isHoldingLedge", false);
+        //if (isGrabbingLedge == true)
+        //{
+        //    //anim.SetBool("isHoldingLedge", true); 
+        //    gameObject.GetComponent<Animator>().enabled = true;
+        //    animTimer = 0.7f;
+        //    isPlayingAnim = true;
+        //}
+        //if (isPlayingAnim == true)
+        //{
+        //    animTimer -= Time.deltaTime;
+        //}
+        //if (animTimer <= 0)
+        //{
+        //    //anim.SetBool("isHoldingLedge", false);
 
-            gameObject.GetComponent<Animator>().enabled = false;
-            isPlayingAnim = false;
-        }
+        //    gameObject.GetComponent<Animator>().enabled = false;
+        //    isPlayingAnim = false;
+        //}
 
 
     }
@@ -135,11 +121,11 @@ public class PlayerScript : MonoBehaviour
             if (isRolling == true)
             {
                 Destroy(col.gameObject);
-                if(playerSpeed > 5f)
-                {
-                    playerSpeed = playerSpeed - 2f;
-                    accelarationTimer = accelarationTimer - 4f;
-                }
+                //if(playerSpeed > 5f)
+                //{
+                //    playerSpeed = playerSpeed - 2f;
+                //    accelarationTimer = accelarationTimer - 4f;
+                //}
             }
         }
     }

@@ -16,6 +16,6 @@ public class horseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RB.velocity = new Vector2(speed, 0);
+        //RB.velocity = new Vector2(speed, 0);
     }
 }
