@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour
         pullingUp = Resources.Load<AnimationClip>("Player_pulling_up");
         anim = GetComponent<Animator>();
 
-        jumpTimer = 1.5f;
+        jumpTimer = 1.2f;
         playerSpeed = 4f;
         rollingTimer = 0.5f;
         playerJump = 40f;
@@ -62,7 +62,14 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space) && jumpTimer <= 0)
         {
-            myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
+            if (mySR.flipX == true)
+            {
+                myRB.AddForce(new Vector2(8, playerJump), ForceMode2D.Impulse);
+            }
+            else
+            {
+                myRB.AddForce(new Vector2(-8, playerJump), ForceMode2D.Impulse);
+            }
         }
         if (rollingTimer <= 0)
         {
