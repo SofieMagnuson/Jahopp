@@ -13,15 +13,15 @@ public class PlayerScript : MonoBehaviour
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
     public bool isRolling;
-    public AnimationClip pullingUp;
-    public Animator anim;
+    //public AnimationClip pullingUp;
+    //public Animator anim;
 
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
-        pullingUp = Resources.Load<AnimationClip>("Player_pulling_up");
-        anim = GetComponent<Animator>();
+        //pullingUp = Resources.Load<AnimationClip>("Player_pulling_up");
+        //anim = GetComponent<Animator>();
 
         jumpTimer = 1.2f;
         playerSpeed = 4f;
@@ -29,7 +29,7 @@ public class PlayerScript : MonoBehaviour
         playerJump = 40f;
         isRolling = false;
 
-        gameObject.GetComponent<Animator>().enabled = false;
+        //gameObject.GetComponent<Animator>().enabled = false;
     }
 
     // Update is called once per frame
@@ -45,11 +45,11 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
-            mySR.flipX = true;
+            mySR.flipX = false;
         }
         if (Input.GetAxisRaw("Horizontal") == -1)
         {
-            mySR.flipX = false;
+            mySR.flipX = true;
         }
         if (Input.GetKey(KeyCode.Space) && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 1))
         {
@@ -62,7 +62,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space) && jumpTimer <= 0)
         {
-            if (mySR.flipX == true)
+            if (mySR.flipX == false)
             {
                 myRB.AddForce(new Vector2(8, playerJump), ForceMode2D.Impulse);
             }
