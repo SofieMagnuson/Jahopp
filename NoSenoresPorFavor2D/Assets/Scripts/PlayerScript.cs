@@ -8,26 +8,26 @@ public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D myRB;
     public SpriteRenderer mySR;
-    public float playerSpeed, playerJump, jumpTimer, animTimer, rollingTimer;
+    public float playerSpeed, playerJump, jumpTimer, rollingTimer, landingTimer;
     public bool isJumping = false;
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
-    public bool isRolling;
-    //public AnimationClip pullingUp;
-    //public Animator anim;
+    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumping;
+    public float collidingLeftOrRight;
+    public LayerMask groundMask;
 
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
-        //pullingUp = Resources.Load<AnimationClip>("Player_pulling_up");
-        //anim = GetComponent<Animator>();
 
         jumpTimer = 1.2f;
+        landingTimer = 1.1f;
         playerSpeed = 4f;
         rollingTimer = 0.5f;
         playerJump = 40f;
         isRolling = false;
+        isGrounded = false;
 
         //gameObject.GetComponent<Animator>().enabled = false;
     }
@@ -60,8 +60,15 @@ public class PlayerScript : MonoBehaviour
             isRolling = false;
             playerSpeed = 4f;
         }
+        if (landingTimer <= 0)
+        {
+            isJumping = false;
+            landingTimer = 1.1f;
+        }
+
         if (Input.GetKeyUp(KeyCode.Space) && jumpTimer <= 0)
         {
+            isJumping = true;
             if (mySR.flipX == false)
             {
                 myRB.AddForce(new Vector2(8, playerJump), ForceMode2D.Impulse);
@@ -87,29 +94,57 @@ public class PlayerScript : MonoBehaviour
             rollingTimer = 0.5f;
         }
 
-        if (isJumping == true)
+        if (isJumping == true && isWallJumping == false)
         {
+            landingTimer -= Time.deltaTime;
         }
-        //if (isGrabbingLedge == true)
-        //{
-        //    //anim.SetBool("isHoldingLedge", true); 
-        //    gameObject.GetComponent<Animator>().enabled = true;
-        //    animTimer = 0.7f;
-        //    isPlayingAnim = true;
-        //}
-        //if (isPlayingAnim == true)
-        //{
-        //    animTimer -= Time.deltaTime;
-        //}
-        //if (animTimer <= 0)
-        //{
-        //    //anim.SetBool("isHoldingLedge", false);
-
-        //    gameObject.GetComponent<Animator>().enabled = false;
-        //    isPlayingAnim = false;
-        //}
 
 
+        //isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 1.1f), new Vector2(1.2f, 0.2f), 0f, groundMask);
+        //isCollidingLeft = Physics2D.OverlapBox(new Vector2(transform.position.x - 0.9f, transform.position.y + 0.2f), new Vector2(0.2f, 1.2f), 0f, groundMask);
+        //isCollidingRight = Physics2D.OverlapBox(new Vector2(transform.position.x + 0.9f, transform.position.y + 0.2f), new Vector2(0.2f, 1.2f), 0f, groundMask);
+
+        //if (isCollidingLeft)
+        //{
+        //    collidingLeftOrRight = 1;
+        //}
+        //if (isCollidingRight)
+        //{
+        //    collidingLeftOrRight = -1;
+        //}
+
+        //if (isWallJumping)
+        //{
+        //    myRB.velocity = new Vector2(playerSpeed * collidingLeftOrRight, playerJump);
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.Space) && (isCollidingLeft || isCollidingRight))
+        //{
+        //    isWallJumping = true;
+        //}
+
+
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.name == "wall" && isJumping == true)
+        {
+            myRB.AddForce(new Vector2(-13, playerJump + 2), ForceMode2D.Impulse);
+            isWallJumping = true;
+        }
+        if (col.gameObject.name == "wall2" && isJumping == true)
+        {
+            myRB.AddForce(new Vector2(13, playerJump + 2), ForceMode2D.Impulse);
+
+        }
+        if (col.gameObject.name == "wall3" && isJumping == true)
+        {
+            isJumping = false;
+            isWallJumping = false;
+
+        }
     }
 
 
@@ -123,7 +158,7 @@ public class PlayerScript : MonoBehaviour
             jumpTimer = 100f;
             isGrabbingLedge = true;
         }
-        if (col.gameObject.name == "horse")
+        if (col.gameObject.name == "enemy")
         {
             if (isRolling == true)
             {
@@ -135,6 +170,10 @@ public class PlayerScript : MonoBehaviour
                 //}
             }
         }
+        //if (col.gameObject.name == "wall")
+        //{
+        //    isCollidingRight = true;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D col)
@@ -147,6 +186,20 @@ public class PlayerScript : MonoBehaviour
             isGrabbingLedge = false;
         }
     }
+
+    //void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y - 1.1f), new Vector2(1.2f, 0.2f));
+
+
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawCube(new Vector2(transform.position.x - 0.9f, transform.position.y + 0.2f), new Vector2(0.2f, 1.2f));
+
+
+    //    Gizmos.color = Color.white;
+    //    Gizmos.DrawCube(new Vector2(transform.position.x + 0.9f, transform.position.y + 0.2f), new Vector2(0.2f, 1.2f));
+    //}
 
 
 }
