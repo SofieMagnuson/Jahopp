@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class JumpScript : MonoBehaviour
 {
-    public GameObject player;
+    //public GameObject player;
 
-    void Start()
-    {
-        player = gameObject.transform.parent.gameObject;
-    }
+    //void Start()
+    //{
+    //    player = gameObject.transform.parent.gameObject;
+    //}
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "ground")
-        {
-            player.GetComponent<PlayerScript>().isJumping = false;
-        }
-    }
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.collider.tag == "ground")
+    //    {
+    //        player.GetComponent<PlayerScript>().isJumping = false;
+    //    }
+    //}
 
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "ground")
-        {
-            player.GetComponent<PlayerScript>().isJumping = true;
+    //void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.collider.tag == "ground")
+    //    {
+    //        player.GetComponent<PlayerScript>().isJumping = true;
 
-        }
-    }
+    //    }
+    //}
 }

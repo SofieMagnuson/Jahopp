@@ -2,40 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// konstant rulling funkar inte, leta upp ett sätt där man inte behöver använda sig utav rigid body 
 
 public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D myRB;
     public SpriteRenderer mySR;
-    public float playerSpeed, playerJump, jumpTimer, rollingTimer, landingTimer;
-    public bool isJumping = false;
+    public float playerSpeed, playerJump, jumpTimer, rollingTimer;
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
-    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumping;
-    public float collidingLeftOrRight;
-    public LayerMask groundMask;
+    public int jumpsLeft;
+    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight;
 
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
 
-        jumpTimer = 1.2f;
-        landingTimer = 1.1f;
+        jumpTimer = 1f;
         playerSpeed = 4f;
         rollingTimer = 0.5f;
         playerJump = 40f;
         isRolling = false;
         isGrounded = false;
+        jumpsLeft = 2;
 
         //gameObject.GetComponent<Animator>().enabled = false;
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
     }
 
     void Update()
@@ -58,148 +49,128 @@ public class PlayerScript : MonoBehaviour
         else
         {
             isRolling = false;
-            playerSpeed = 4f;
-        }
-        if (landingTimer <= 0)
-        {
-            isJumping = false;
-            landingTimer = 1.1f;
+          
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && jumpTimer <= 0)
-        {
-            isJumping = true;
-            if (mySR.flipX == false)
-            {
-                myRB.AddForce(new Vector2(8, playerJump), ForceMode2D.Impulse);
-            }
-            else
-            {
-                myRB.AddForce(new Vector2(-8, playerJump), ForceMode2D.Impulse);
-            }
-        }
+      
         if (rollingTimer <= 0)
         {
             playerSpeed = 8f;
         }
 
-        if (isRolling == true)
+        if (isRolling)
         {
             jumpTimer -= Time.deltaTime;
             rollingTimer -= Time.deltaTime;
         }
         else
         {
-            jumpTimer = 1.5f;
             rollingTimer = 0.5f;
+            if (isGrounded)
+            {
+                jumpTimer = 1f;
+                playerSpeed = 4f;
+            }
         }
-
-        if (isJumping == true && isWallJumping == false)
+    }
+    void FixedUpdate()
+    {
+        if (Input.GetKeyUp(KeyCode.Space) && jumpTimer <= 0 && jumpsLeft != 0)
         {
-            landingTimer -= Time.deltaTime;
+            myRB.velocity = new Vector2(myRB.velocity.x, 0);
+            myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
+            isGrounded = false;
+            jumpsLeft -= 1;
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isWallJumpingRight)
+            {
+                myRB.velocity.Set(-12, playerJump +2);
+                //myRB.AddForce(new Vector2(-12, playerJump + 4), ForceMode2D.Impulse);
 
+            }
+            else if (isWallJumpingLeft)
+            {
+                myRB.velocity.Set(12, playerJump + 2);
+                //myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
 
-        //isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 1.1f), new Vector2(1.2f, 0.2f), 0f, groundMask);
-        //isCollidingLeft = Physics2D.OverlapBox(new Vector2(transform.position.x - 0.9f, transform.position.y + 0.2f), new Vector2(0.2f, 1.2f), 0f, groundMask);
-        //isCollidingRight = Physics2D.OverlapBox(new Vector2(transform.position.x + 0.9f, transform.position.y + 0.2f), new Vector2(0.2f, 1.2f), 0f, groundMask);
+            }
 
-        //if (isCollidingLeft)
-        //{
-        //    collidingLeftOrRight = 1;
-        //}
-        //if (isCollidingRight)
-        //{
-        //    collidingLeftOrRight = -1;
-        //}
-
-        //if (isWallJumping)
-        //{
-        //    myRB.velocity = new Vector2(playerSpeed * collidingLeftOrRight, playerJump);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Space) && (isCollidingLeft || isCollidingRight))
-        //{
-        //    isWallJumping = true;
-        //}
-
-
-
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name == "wall" && isJumping == true)
+        if (col.gameObject.name == "wall" && !isGrounded)
         {
-            myRB.AddForce(new Vector2(-13, playerJump + 2), ForceMode2D.Impulse);
-            isWallJumping = true;
+            isWallJumpingRight = true;
         }
-        if (col.gameObject.name == "wall2" && isJumping == true)
+        if (col.gameObject.name == "wall2" && !isGrounded)
         {
-            myRB.AddForce(new Vector2(13, playerJump + 2), ForceMode2D.Impulse);
+            isWallJumpingLeft = true;
 
         }
-        if (col.gameObject.name == "wall3" && isJumping == true)
+        if (col.gameObject.name == "wall3")
         {
-            isJumping = false;
-            isWallJumping = false;
-
+        }
+        if (col.gameObject.tag == "ground")
+        {
+            isGrounded = true;
+            jumpsLeft = 2;
         }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.name == "ground2")
+        if (col.gameObject.name == "wall")
         {
-            myRB.gravityScale = 0;
-            myRB.velocity = Vector3.zero;
-            isJumping = true;
-            jumpTimer = 100f;
-            isGrabbingLedge = true;
+            isWallJumpingRight = false;
         }
-        if (col.gameObject.name == "enemy")
+        if (col.gameObject.name == "wall2")
         {
-            if (isRolling == true)
-            {
-                Destroy(col.gameObject);
-                //if(playerSpeed > 5f)
-                //{
-                //    playerSpeed = playerSpeed - 2f;
-                //    accelarationTimer = accelarationTimer - 4f;
-                //}
-            }
-        }
-        //if (col.gameObject.name == "wall")
-        //{
-        //    isCollidingRight = true;
-        //}
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.name == "ground2")
-        {
-            myRB.gravityScale = 3;
-            isJumping = false;
-            jumpTimer = 0f;
-            isGrabbingLedge = false;
+            isWallJumpingLeft = false;
         }
     }
 
-    //void OnDrawGizmosSelected()
+
+    //private void OnTriggerEnter2D(Collider2D col)
     //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y - 1.1f), new Vector2(1.2f, 0.2f));
-
-
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawCube(new Vector2(transform.position.x - 0.9f, transform.position.y + 0.2f), new Vector2(0.2f, 1.2f));
-
-
-    //    Gizmos.color = Color.white;
-    //    Gizmos.DrawCube(new Vector2(transform.position.x + 0.9f, transform.position.y + 0.2f), new Vector2(0.2f, 1.2f));
+    //    if (col.gameObject.name == "ground2")
+    //    {
+    //        myRB.gravityScale = 0;
+    //        myRB.velocity = Vector3.zero;
+    //        isJumping = true;
+    //        jumpTimer = 100f;
+    //        isGrabbingLedge = true;
+    //    }
+    //    if (col.gameObject.name == "enemy")
+    //    {
+    //        if (isRolling == true)
+    //        {
+    //            Destroy(col.gameObject);
+    //            //if(playerSpeed > 5f)
+    //            //{
+    //            //    playerSpeed = playerSpeed - 2f;
+    //            //    accelarationTimer = accelarationTimer - 4f;
+    //            //}
+    //        }
+    //    }
+    //    //if (col.gameObject.name == "wall")
+    //    //{
+    //    //    isCollidingRight = true;
+    //    //}
     //}
 
+    //private void OnTriggerExit2D(Collider2D col)
+    //{
+    //    if (col.gameObject.name == "ground2")
+    //    {
+    //        myRB.gravityScale = 3;
+    //        isJumping = false;
+    //        jumpTimer = 0f;
+    //        isGrabbingLedge = false;
+    //    }
+    //}
 
 }
