@@ -86,12 +86,14 @@ public class PlayerScript : MonoBehaviour
         {
             if (isWallJumpingRight)
             {
+                jumpsLeft = 1;
                 myRB.velocity.Set(-12, playerJump +2);
                 //myRB.AddForce(new Vector2(-12, playerJump + 4), ForceMode2D.Impulse);
 
             }
             else if (isWallJumpingLeft)
             {
+                jumpsLeft = 1;
                 myRB.velocity.Set(12, playerJump + 2);
                 //myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
 
@@ -102,11 +104,11 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name == "wall" && !isGrounded)
+        if (col.gameObject.name == "MiddleTree" && !isGrounded)
         {
             isWallJumpingRight = true;
         }
-        if (col.gameObject.name == "wall2" && !isGrounded)
+        if (col.gameObject.name == "FirstTree" && !isGrounded)
         {
             isWallJumpingLeft = true;
 
@@ -123,11 +125,11 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.name == "wall")
+        if (col.gameObject.name == "MiddleTree")
         {
             isWallJumpingRight = false;
         }
-        if (col.gameObject.name == "wall2")
+        if (col.gameObject.name == "FirstTree")
         {
             isWallJumpingLeft = false;
         }
