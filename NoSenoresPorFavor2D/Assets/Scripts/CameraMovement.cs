@@ -15,9 +15,8 @@ public class CameraMovement : MonoBehaviour
         playerScript = GameObject.Find("player").GetComponent<PlayerScript>();
 
         offsetPos = new Vector3(5.6f, 3.5f, -3.8f);
-        offsetLookingUp = new Vector3(3.2f, 5.5f, -3.8f);
+        offsetLookingUp = new Vector3(9.2f, 7.5f, -3.8f);
         offsetRolling = new Vector3(6.8f, 3.5f, -3.8f);
-
 
         cameraSpeed = 3f;
     }
@@ -57,7 +56,7 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") == 0 && player.GetComponent<SpriteRenderer>().flipX == true && Input.GetKey(KeyCode.UpArrow))
         {
             Vector3 startPos = transform.position;
-            Vector3 endPos = new Vector3(player.transform.position.x - 4.0f, player.transform.position.y + offsetLookingUp.y, player.transform.position.z + offsetLookingUp.z);
+            Vector3 endPos = new Vector3(player.transform.position.x - 9.0f, player.transform.position.y + offsetLookingUp.y, player.transform.position.z + offsetLookingUp.z);
 
             transform.position = Vector3.Lerp(startPos, endPos, cameraSpeed * Time.deltaTime);
         }

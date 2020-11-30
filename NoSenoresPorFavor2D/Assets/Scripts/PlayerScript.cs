@@ -7,11 +7,12 @@ public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D myRB;
     public SpriteRenderer mySR;
-    public float playerSpeed, playerJump, jumpTimer, rollingTimer;
+    public float playerSpeed, rollingSpeed, playerJump, jumpTimer, rollingTimer;
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
     public int jumpsLeft;
     public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight;
+    public Vector3 startPos;
 
     void Start()
     {
@@ -19,14 +20,15 @@ public class PlayerScript : MonoBehaviour
         mySR = GetComponent<SpriteRenderer>();
 
         jumpTimer = 1f;
-        playerSpeed = 4f;
+        playerSpeed = 6f;
+        rollingSpeed = 10f;
         rollingTimer = 0.5f;
         playerJump = 40f;
         isRolling = false;
         isGrounded = false;
         jumpsLeft = 2;
+        startPos = new Vector3(-8.39f, -1.865f, -0.1f);
 
-        //gameObject.GetComponent<Animator>().enabled = false;
     }
 
     void Update()
@@ -55,7 +57,7 @@ public class PlayerScript : MonoBehaviour
       
         if (rollingTimer <= 0)
         {
-            playerSpeed = 8f;
+            playerSpeed = rollingSpeed;
         }
 
         if (isRolling)
@@ -69,13 +71,20 @@ public class PlayerScript : MonoBehaviour
             if (isGrounded)
             {
                 jumpTimer = 1f;
-                playerSpeed = 4f;
+                playerSpeed = 6f;
             }
         }
     }
     void FixedUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && jumpTimer <= 0 && jumpsLeft != 0)
+        if (Input.GetKeyUp(KeyCode.Space) && jumpsLeft != 0)
+        {
+            myRB.velocity = new Vector2(myRB.velocity.x, 0);
+            myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
+            isGrounded = false;
+            jumpsLeft -= 1;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space) && jumpsLeft != 0 && jumpTimer <= 0)
         {
             myRB.velocity = new Vector2(myRB.velocity.x, 0);
             myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
@@ -120,6 +129,11 @@ public class PlayerScript : MonoBehaviour
         {
             isGrounded = true;
             jumpsLeft = 2;
+        }
+        if (col.gameObject.name == "BrokenGlass")
+        {
+            transform.position = startPos;
+            //loose life
         }
     }
 
