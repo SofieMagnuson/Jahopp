@@ -95,14 +95,14 @@ public class PlayerScript : MonoBehaviour
         {
             if (isWallJumpingRight)
             {
-                jumpsLeft = 1;
+                //jumpsLeft = 1;
                 myRB.velocity.Set(-12, playerJump +2);
                 //myRB.AddForce(new Vector2(-12, playerJump + 4), ForceMode2D.Impulse);
 
             }
             else if (isWallJumpingLeft)
             {
-                jumpsLeft = 1;
+                //jumpsLeft = 1;
                 myRB.velocity.Set(12, playerJump + 2);
                 //myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
 
@@ -122,15 +122,20 @@ public class PlayerScript : MonoBehaviour
             isWallJumpingLeft = true;
 
         }
-        if (col.gameObject.name == "wall3")
-        {
-        }
         if (col.gameObject.tag == "ground")
         {
             isGrounded = true;
             jumpsLeft = 2;
         }
-        if (col.gameObject.name == "BrokenGlass")
+        if (col.gameObject.tag == "wall")
+        {
+            jumpsLeft = 1;
+        }
+        if (col.gameObject.tag == "specialwall")
+        {
+            jumpsLeft = 2;
+        }
+        if (col.gameObject.tag == "deadly")
         {
             transform.position = startPos;
             //loose life
