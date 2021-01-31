@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class PlayerScript : MonoBehaviour
@@ -13,6 +14,8 @@ public class PlayerScript : MonoBehaviour
     public int jumpsLeft;
     public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight;
     public Vector3 startPos;
+    public AudioSource jumpsound;
+ 
 
     void Start()
     {
@@ -28,13 +31,15 @@ public class PlayerScript : MonoBehaviour
         isGrounded = false;
         jumpsLeft = 2;
         startPos = new Vector3(-8.39f, -1.865f, -0.1f);
-
+        jumpsound = GetComponent<AudioSource>();
+        
     }
 
     void Update()
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         transform.position += movement * Time.deltaTime * playerSpeed;
+       
 
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
@@ -83,6 +88,8 @@ public class PlayerScript : MonoBehaviour
             myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
             isGrounded = false;
             jumpsLeft -= 1;
+            jumpsound.Play();
+
         }
         else if (Input.GetKeyUp(KeyCode.Space) && jumpsLeft != 0 && jumpTimer <= 0)
         {
@@ -105,6 +112,8 @@ public class PlayerScript : MonoBehaviour
                 //jumpsLeft = 1;
                 myRB.velocity.Set(12, playerJump + 2);
                 //myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
+
+                
 
             }
 
@@ -153,6 +162,8 @@ public class PlayerScript : MonoBehaviour
             isWallJumpingLeft = false;
         }
     }
+
+    
 
 
     //private void OnTriggerEnter2D(Collider2D col)
