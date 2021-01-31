@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - AudioManager
+    - BtnFX
     - CameraMovement
     - LeafScript
     - MainMenu
@@ -25,6 +26,7 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -66,23 +68,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9884}
     - Class: 114
-      Script: {instanceID: 10188}
+      Script: {instanceID: 10190}
     - Class: 114
-      Script: {instanceID: 10254}
+      Script: {instanceID: 10256}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10606}
     - Class: 114
-      Script: {instanceID: 10820}
+      Script: {instanceID: 10824}
     - Class: 114
-      Script: {instanceID: 11010}
+      Script: {instanceID: 10964}
     - Class: 114
-      Script: {instanceID: 11070}
+      Script: {instanceID: 11016}
     - Class: 114
-      Script: {instanceID: 11218}
+      Script: {instanceID: 11076}
     - Class: 114
-      Script: {instanceID: 11440}
+      Script: {instanceID: 11224}
     - Class: 114
-      Script: {instanceID: 13612}
+      Script: {instanceID: 11446}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -133,27 +135,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9884}
     - Class: 114
-      Script: {instanceID: 10188}
+      Script: {instanceID: 10126}
     - Class: 114
-      Script: {instanceID: 10254}
+      Script: {instanceID: 10190}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10256}
     - Class: 114
-      Script: {instanceID: 10820}
+      Script: {instanceID: 10606}
     - Class: 114
-      Script: {instanceID: 11010}
+      Script: {instanceID: 10824}
     - Class: 114
-      Script: {instanceID: 11070}
+      Script: {instanceID: 10964}
     - Class: 114
-      Script: {instanceID: 11218}
+      Script: {instanceID: 11016}
     - Class: 114
-      Script: {instanceID: 11304}
+      Script: {instanceID: 11076}
     - Class: 114
-      Script: {instanceID: 11440}
+      Script: {instanceID: 11224}
     - Class: 114
-      Script: {instanceID: 13612}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 23104}
+      Script: {instanceID: 11446}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -183,7 +185,19 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
     - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -194,27 +208,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9884}
     - Class: 114
-      Script: {instanceID: 10254}
+      Script: {instanceID: 10256}
     - Class: 114
-      Script: {instanceID: 10276}
+      Script: {instanceID: 10280}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10606}
     - Class: 114
-      Script: {instanceID: 10604}
+      Script: {instanceID: 10608}
     - Class: 114
-      Script: {instanceID: 10820}
+      Script: {instanceID: 10824}
     - Class: 114
-      Script: {instanceID: 10834}
+      Script: {instanceID: 10838}
     - Class: 114
-      Script: {instanceID: 11010}
+      Script: {instanceID: 11016}
     - Class: 114
-      Script: {instanceID: 11070}
+      Script: {instanceID: 11076}
     - Class: 114
-      Script: {instanceID: 11234}
+      Script: {instanceID: 11240}
     - Class: 114
-      Script: {instanceID: 11348}
+      Script: {instanceID: 11354}
     - Class: 114
-      Script: {instanceID: 11440}
+      Script: {instanceID: 11414}
+    - Class: 114
+      Script: {instanceID: 11446}
+    - Class: 114
+      Script: {instanceID: 13350}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -238,7 +256,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 09078dcff58552c86fc3e18c5f8681e3
+      Hash: 9c68577bb3251b119eb87a8f67f539ab
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerScript
@@ -382,6 +400,12 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
+      Hash: e8e6325e485836fbefb17f5653a8748f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioManager
+  - hash:
+      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -422,6 +446,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ControlPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: dc6eaebe99821ebfbc7a02a915b4fe08
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Sound
   - hash:
       serializedVersion: 2
       Hash: dd7520b7d4e690e8c593273e7b9fbe80
@@ -644,6 +674,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TMP_TextInfoDebugTool
+  - hash:
+      serializedVersion: 2
+      Hash: c8c5e65e9fb858572516474d6e2102bc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PasueMenu
   - hash:
       serializedVersion: 2
       Hash: bd3f0ca738703903e759f77536ed74fd
@@ -880,22 +916,10 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: c8c5e65e9fb858572516474d6e2102bc
+      Hash: 0508effb180408aa899c5a59f4273a45
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: PasueMenu
-  - hash:
-      serializedVersion: 2
-      Hash: e8e6325e485836fbefb17f5653a8748f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: AudioManager
-  - hash:
-      serializedVersion: 2
-      Hash: dc6eaebe99821ebfbc7a02a915b4fe08
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Sound
+    className: BtnFX
   platform: 5
   scenePathNames:
   - Assets/Scenes/Menu.unity
