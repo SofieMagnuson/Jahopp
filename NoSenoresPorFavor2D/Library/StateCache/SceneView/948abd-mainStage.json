@@ -1,1 +1,9 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":53.262596130371097,"y":17.569507598876954,"z":-90.23410034179688},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":74.77129364013672,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":950.0565185546875,"y":423.5070495605469,"z":-1452.5},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":1523.3271484375,"orthographic":true}
+>>>>>>> sofie
+=======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":2.639138698577881,"y":3.486180543899536,"z":-1574.03125},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":32.612892150878909,"orthographic":true}
+>>>>>>> sofie
