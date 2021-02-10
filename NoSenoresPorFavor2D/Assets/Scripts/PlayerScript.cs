@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     public bool isPlayingAnim = false;
     public int jumpsLeft;
     public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight;
-    public Vector3 startPos;
+    public Vector3 startPos, checkpoint;
     public AudioSource jumpsound;
  
 
@@ -31,6 +31,7 @@ public class PlayerScript : MonoBehaviour
         isGrounded = false;
         jumpsLeft = 2;
         startPos = new Vector3(-8.39f, -1.865f, -0.1f);
+        checkpoint = new Vector3(99.2f, 25.09658f, -0.1f);
         jumpsound = GetComponent<AudioSource>();
         
     }
@@ -147,6 +148,11 @@ public class PlayerScript : MonoBehaviour
         if (col.gameObject.tag == "deadly")
         {
             transform.position = startPos;
+            //loose life
+        }
+        if (col.gameObject.tag == "deadly2")
+        {
+            transform.position = checkpoint;
             //loose life
         }
     }
