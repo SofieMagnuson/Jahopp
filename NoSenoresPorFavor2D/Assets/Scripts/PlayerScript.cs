@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
         mySR = GetComponent<SpriteRenderer>();
 
         jumpTimer = 1f;
-        playerSpeed = 6f;
+        playerSpeed = 9f;
         rollingSpeed = 10f;
         rollingTimer = 0.5f;
         playerJump = 40f;
