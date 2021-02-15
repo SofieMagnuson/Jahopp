@@ -19,5 +19,12 @@ public class MainMenu : MonoBehaviour
 
     }
 
+    public void LoadCredit()
+
+    {
+        SceneManager.LoadScene("Credit");
+        Time.timeScale = 1f;
+    }
+
 
 }
