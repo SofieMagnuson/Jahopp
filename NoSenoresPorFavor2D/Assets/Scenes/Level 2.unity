@@ -1944,7 +1944,6 @@ MonoBehaviour:
   isWallJumpingRight: 0
   startPos: {x: 0, y: 0, z: 0}
   checkpoint: {x: 0, y: 0, z: 0}
-  jumpsound: {fileID: 0}
 --- !u!50 &1246727577
 Rigidbody2D:
   serializedVersion: 4
@@ -2065,9 +2064,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2b6e38a4d64d8a449a2c50bcaa2067f0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3ebec8a13aa01af459c18b83a7c0c486, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.104
+  m_Volume: 0.39
   m_Pitch: 1
   Loop: 1
   Mute: 0

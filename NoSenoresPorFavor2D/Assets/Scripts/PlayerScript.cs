@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     public int jumpsLeft;
     public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight;
     public Vector3 startPos, checkpoint;
-    public AudioSource jumpsound;
+ 
  
 
     void Start()
@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour
         jumpsLeft = 2;
         startPos = new Vector3(-8.39f, -1.865f, -0.1f);
         checkpoint = new Vector3(99.2f, 25.09658f, -0.1f);
-        jumpsound = GetComponent<AudioSource>();
+       
         
     }
 
@@ -89,7 +89,7 @@ public class PlayerScript : MonoBehaviour
             myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
             isGrounded = false;
             jumpsLeft -= 1;
-            jumpsound.Play();
+         
 
         }
         else if (Input.GetKeyUp(KeyCode.Space) && jumpsLeft != 0 && jumpTimer <= 0)
