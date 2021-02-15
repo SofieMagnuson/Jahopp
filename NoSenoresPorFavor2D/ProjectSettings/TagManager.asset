@@ -9,6 +9,8 @@ TagManager:
   - specialwall
   - deadly
   - deadly2
+  - Checkpoint
+  - WinningCheckpoint
   layers:
   - Default
   - TransparentFX

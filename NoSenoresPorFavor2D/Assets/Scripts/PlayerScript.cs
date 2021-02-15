@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerScript : MonoBehaviour
@@ -12,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
     public int jumpsLeft;
-    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight;
+    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight, isAtCheckpoint;
     public Vector3 startPos, checkpoint;
  
  
@@ -155,8 +156,36 @@ public class PlayerScript : MonoBehaviour
             transform.position = checkpoint;
             //loose life
         }
+        if (col.gameObject.tag == "Checkpoint")
+
+        {
+           LoadingScene();
+        }
+
+        if (col.gameObject.tag == "WinningCheckpoint")
+
+        {
+            WinScene();
+        }
     }
 
+    public void LoadingScene()
+    {
+        {
+            
+            SceneManager.LoadScene("Level 2");
+            Time.timeScale = 1f;
+        }
+    }
+
+    public void WinScene()
+    {
+        {
+
+            SceneManager.LoadScene("Win");
+            Time.timeScale = 1f;
+        }
+    }
     private void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.name == "MiddleTree")

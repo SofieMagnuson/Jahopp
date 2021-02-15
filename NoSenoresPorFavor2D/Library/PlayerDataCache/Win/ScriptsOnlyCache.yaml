@@ -1,13 +1,13 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - AudioManager
     - BtnFX
     - CameraMovement
     - LeafScript
     - MainMenu
     - PasueMenu
     - PlayerScript
+    - TutorialManager
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
     - TMPro.TMP_FontAsset
@@ -15,12 +15,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -51,6 +45,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 58
       Script: {instanceID: 0}
+    - Class: 60
+      Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
     - Class: 81
@@ -68,11 +64,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9884}
     - Class: 114
-      Script: {instanceID: 10190}
+      Script: {instanceID: 10188}
     - Class: 114
-      Script: {instanceID: 10256}
+      Script: {instanceID: 10254}
     - Class: 114
-      Script: {instanceID: 10606}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 10774}
     - Class: 114
       Script: {instanceID: 10824}
     - Class: 114
@@ -135,13 +133,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9884}
     - Class: 114
-      Script: {instanceID: 10126}
+      Script: {instanceID: 10188}
     - Class: 114
-      Script: {instanceID: 10190}
+      Script: {instanceID: 10254}
     - Class: 114
-      Script: {instanceID: 10256}
-    - Class: 114
-      Script: {instanceID: 10606}
+      Script: {instanceID: 10604}
     - Class: 114
       Script: {instanceID: 10824}
     - Class: 114
@@ -156,6 +152,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11310}
     - Class: 114
       Script: {instanceID: 11446}
+    - Class: 114
+      Script: {instanceID: 14162}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -208,13 +206,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9884}
     - Class: 114
-      Script: {instanceID: 10256}
+      Script: {instanceID: 10254}
     - Class: 114
-      Script: {instanceID: 10280}
+      Script: {instanceID: 10276}
+    - Class: 114
+      Script: {instanceID: 10422}
+    - Class: 114
+      Script: {instanceID: 10604}
     - Class: 114
       Script: {instanceID: 10606}
-    - Class: 114
-      Script: {instanceID: 10608}
     - Class: 114
       Script: {instanceID: 10824}
     - Class: 114
@@ -231,8 +231,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11414}
     - Class: 114
       Script: {instanceID: 11446}
-    - Class: 114
-      Script: {instanceID: 13350}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -256,7 +254,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 9c68577bb3251b119eb87a8f67f539ab
+      Hash: 00f351abfdfc7a0c22df6d506c14e505
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerScript
@@ -400,12 +398,6 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: e8e6325e485836fbefb17f5653a8748f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: AudioManager
-  - hash:
-      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -448,12 +440,6 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: dc6eaebe99821ebfbc7a02a915b4fe08
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Sound
-  - hash:
-      serializedVersion: 2
       Hash: dd7520b7d4e690e8c593273e7b9fbe80
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -494,6 +480,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Asset
+  - hash:
+      serializedVersion: 2
+      Hash: 0508effb180408aa899c5a59f4273a45
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BtnFX
   - hash:
       serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
@@ -584,6 +576,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 2e3e20fbc97344a9e48484d2e6426092
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TutorialManager
   - hash:
       serializedVersion: 2
       Hash: 11319334e5365797f8056694f9b5dae4
@@ -914,12 +912,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 0508effb180408aa899c5a59f4273a45
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BtnFX
   platform: 5
   scenePathNames:
   - Assets/Scenes/Menu.unity
