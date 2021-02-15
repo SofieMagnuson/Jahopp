@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 
 public class PlayerScript : MonoBehaviour
@@ -41,11 +42,12 @@ public class PlayerScript : MonoBehaviour
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         transform.position += movement * Time.deltaTime * playerSpeed;
-       
 
+        
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
             mySR.flipX = false;
+            FindObjectOfType<AudioManager>().Play("Walking");
         }
         if (Input.GetAxisRaw("Horizontal") == -1)
         {
