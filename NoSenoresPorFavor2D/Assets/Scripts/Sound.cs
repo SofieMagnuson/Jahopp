@@ -3,8 +3,10 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class Sound : MonoBehaviour
+public class Sound
 {
+   
+
     public string name;
     public AudioClip clip;
 
@@ -15,4 +17,6 @@ public class Sound : MonoBehaviour
 
     [HideInInspector]
     public AudioSource source;
+
+  
 }

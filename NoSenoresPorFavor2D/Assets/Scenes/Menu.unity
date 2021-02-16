@@ -485,8 +485,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFx: {fileID: 841533374}
-  hoverFx: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
-  clickFx: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
+  hoverFx: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
+  clickFx: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
 --- !u!82 &841533374
 AudioSource:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1019,7 +1019,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1118,8 +1118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFx: {fileID: 1479486953}
-  hoverFx: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
-  clickFx: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
+  hoverFx: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
+  clickFx: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
 --- !u!114 &1479486955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,8 +1217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFx: {fileID: 1625405100}
-  hoverFx: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
-  clickFx: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
+  hoverFx: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
+  clickFx: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
 --- !u!114 &1625405099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1272,7 +1272,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 47ee93177ea26d34a9bccbdb3edeb21c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9ac3b25036695ea42a5341d13e2cb595, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

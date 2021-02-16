@@ -42,12 +42,12 @@ public class PlayerScript : MonoBehaviour
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         transform.position += movement * Time.deltaTime * playerSpeed;
-
         
+
+
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
             mySR.flipX = false;
-            FindObjectOfType<AudioManager>().Play("Walking");
         }
         if (Input.GetAxisRaw("Horizontal") == -1)
         {
@@ -81,6 +81,7 @@ public class PlayerScript : MonoBehaviour
             {
                 jumpTimer = 1f;
                 playerSpeed = 6f;
+            
             }
         }
     }
