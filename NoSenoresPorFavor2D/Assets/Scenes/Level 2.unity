@@ -1911,7 +1911,7 @@ GameObject:
   - component: {fileID: 618571231}
   - component: {fileID: 618571235}
   m_Layer: 0
-  m_Name: Main Camera (1)
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3325,6 +3325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRB: {fileID: 1246727577}
   mySR: {fileID: 1246727579}
+  myCamera: {fileID: 618571231}
   playerSpeed: 0
   rollingSpeed: 0
   playerJump: 0

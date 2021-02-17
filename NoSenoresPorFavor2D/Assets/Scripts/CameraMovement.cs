@@ -7,12 +7,14 @@ public class CameraMovement : MonoBehaviour
 
     public GameObject player;
     public PlayerScript playerScript;
+    private Camera cam;
     public Vector3 offsetPos, offsetLookingUp, offsetRolling;
     public float cameraSpeed;
 
     void Start()
     {
         playerScript = GameObject.Find("player").GetComponent<PlayerScript>();
+        cam = GameObject.Find("MainCamera").GetComponent<Camera>();
 
         offsetPos = new Vector3(7.6f, 5.5f, -5.8f);
         offsetLookingUp = new Vector3(9.2f, 7.5f, -3.8f);
@@ -95,8 +97,42 @@ public class CameraMovement : MonoBehaviour
 
             transform.position = Vector3.Lerp(startPos, endPos, cameraSpeed * Time.deltaTime);
         }
-
-
     }
 
+    public void CameraZoom11()
+    {
+        cam.orthographicSize = 11.0f;
+    }
+
+    public void CameraLower()
+    {
+        if (Input.GetAxisRaw("Horizontal") == 1)
+        {
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(player.transform.position.x + offsetPos.x, player.transform.position.y + offsetPos.y - 20f, player.transform.position.z + offsetPos.z);
+
+            transform.position = Vector3.Lerp(startPos, endPos, cameraSpeed * Time.deltaTime);
+        }
+        if (Input.GetAxisRaw("Horizontal") == -1)
+        {
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(player.transform.position.x - 7, player.transform.position.y + offsetPos.y - 20f, player.transform.position.z + offsetPos.z);
+
+            transform.position = Vector3.Lerp(startPos, endPos, cameraSpeed * Time.deltaTime);
+        }
+        if (Input.GetAxisRaw("Horizontal") == 0 && player.GetComponent<SpriteRenderer>().flipX == false)
+        {
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(player.transform.position.x + offsetPos.x, player.transform.position.y + offsetPos.y - 10f, player.transform.position.z + offsetPos.z);
+
+            transform.position = Vector3.Lerp(startPos, endPos, cameraSpeed * Time.deltaTime);
+        }
+        if (Input.GetAxisRaw("Horizontal") == 0 && player.GetComponent<SpriteRenderer>().flipX == true)
+        {
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(player.transform.position.x - 6.7f, player.transform.position.y + offsetPos.y - 10f, player.transform.position.z + offsetPos.z);
+
+            transform.position = Vector3.Lerp(startPos, endPos, cameraSpeed * Time.deltaTime);
+        }
+    }
 }

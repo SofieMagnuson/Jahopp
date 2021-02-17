@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D myRB;
     public SpriteRenderer mySR;
+    public CameraMovement myCamera;
     public float playerSpeed, rollingSpeed, playerJump, jumpTimer, rollingTimer;
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
@@ -25,7 +26,7 @@ public class PlayerScript : MonoBehaviour
         mySR = GetComponent<SpriteRenderer>();
 
         jumpTimer = 1f;
-        playerSpeed = 9f;
+        playerSpeed = 12f;
         rollingSpeed = 10f;
         rollingTimer = 0.5f;
         playerJump = 40f;
@@ -152,12 +153,22 @@ public class PlayerScript : MonoBehaviour
         if (col.gameObject.tag == "deadly")
         {
             transform.position = startPos;
+            //transform.position = checkpoint;
+
             //loose life
         }
         if (col.gameObject.tag == "deadly2")
         {
             transform.position = checkpoint;
             //loose life
+        }
+        if (col.gameObject.name == "step1")
+        {
+            myCamera.CameraZoom11();
+        }
+        if (col.gameObject.name == "leaf (2)")
+        {
+            myCamera.CameraLower();
         }
         if (col.gameObject.tag == "Checkpoint")
 
