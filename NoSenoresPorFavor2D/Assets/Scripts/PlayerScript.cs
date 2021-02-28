@@ -15,7 +15,7 @@ public class PlayerScript : MonoBehaviour
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
     public int jumpsLeft;
-    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight, isAtCheckpoint;
+    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight, isAtCheckpoint, isShowingGlass, showedGlass;
     public Vector3 startPos, checkpoint;
  
  
@@ -32,6 +32,8 @@ public class PlayerScript : MonoBehaviour
         playerJump = 40f;
         isRolling = false;
         isGrounded = false;
+        isShowingGlass = false;
+        showedGlass = false;
         jumpsLeft = 2;
         startPos = new Vector3(-8.39f, -1.865f, -0.1f);
         checkpoint = new Vector3(99.2f, 25.09658f, -0.1f);
@@ -84,6 +86,12 @@ public class PlayerScript : MonoBehaviour
                 playerSpeed = 6f;
             
             }
+        }
+
+        if (isShowingGlass)
+        {
+            myCamera.isShowingGlass = true;
+            myCamera.ShowGlass();
         }
     }
     void FixedUpdate()
@@ -168,7 +176,11 @@ public class PlayerScript : MonoBehaviour
         }
         if (col.gameObject.name == "leaf (2)")
         {
-            myCamera.CameraLower();
+            if (!showedGlass)
+            {
+                isShowingGlass = true;
+                showedGlass = true;
+            }
         }
         if (col.gameObject.tag == "Checkpoint")
 

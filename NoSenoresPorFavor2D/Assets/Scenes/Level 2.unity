@@ -1118,7 +1118,7 @@ PrefabInstance:
     - target: {fileID: 5302824066378474450, guid: 9e1abdee117eaf04491b5d04e7dc6434,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 105.41
+      value: 108.1
       objectReference: {fileID: 0}
     - target: {fileID: 5302824066378474450, guid: 9e1abdee117eaf04491b5d04e7dc6434,
         type: 3}
@@ -1351,7 +1351,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -19.423323, y: 8.96035}
+  m_Offset: {x: -19.423323, y: 10.813002}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1362,7 +1362,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6780434, y: 48.76288}
+  m_Size: {x: 1.6780434, y: 45.057575}
   m_EdgeRadius: 0
 --- !u!1 &475703697
 GameObject:
@@ -1930,11 +1930,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1246727574}
-  playerScript: {fileID: 0}
+  glass: {fileID: 1270057016}
+  playerScript: {fileID: 1246727576}
   offsetPos: {x: 0, y: 0, z: 0}
   offsetLookingUp: {x: 0, y: 0, z: 0}
   offsetRolling: {x: 0, y: 0, z: 0}
   cameraSpeed: 0
+  panAwaySpeed: 0
+  showingTime: 0
+  isShowingGlass: 0
 --- !u!81 &618571232
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3341,6 +3345,8 @@ MonoBehaviour:
   isWallJumpingLeft: 0
   isWallJumpingRight: 0
   isAtCheckpoint: 0
+  isShowingGlass: 0
+  showedGlass: 0
   startPos: {x: 0, y: 0, z: 0}
   checkpoint: {x: 0, y: 0, z: 0}
 --- !u!50 &1246727577
@@ -4164,7 +4170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270057016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 105.05, y: -7.53, z: 0}
+  m_LocalPosition: {x: 108, y: -7.53, z: 0}
   m_LocalScale: {x: 4.291931, y: 1.355671, z: 0.80094}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5325,7 +5331,7 @@ PrefabInstance:
     - target: {fileID: 5302824066378474450, guid: 9e1abdee117eaf04491b5d04e7dc6434,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.8
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 5302824066378474450, guid: 9e1abdee117eaf04491b5d04e7dc6434,
         type: 3}
