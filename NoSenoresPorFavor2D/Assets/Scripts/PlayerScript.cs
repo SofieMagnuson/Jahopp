@@ -25,10 +25,10 @@ public class PlayerScript : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
 
-        jumpTimer = 1f;
-        playerSpeed = 12f;
+        jumpTimer = 0f;
+        playerSpeed = 8f;
         rollingSpeed = 10f;
-        rollingTimer = 0.5f;
+        //rollingTimer = 0.5f;
         playerJump = 40f;
         isRolling = false;
         isGrounded = false;
@@ -56,37 +56,38 @@ public class PlayerScript : MonoBehaviour
         {
             mySR.flipX = true;
         }
-        if (Input.GetKey(KeyCode.Space) && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 1))
-        {
-            isRolling = true;
-        }
-        else
-        {
-            isRolling = false;
+       
+        // if (Input.GetKey(KeyCode.Space) && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 1))
+       // {
+        //    isRolling = true;
+        //}
+        //else
+        //{
+        //    isRolling = false;
           
-        }
+        //}
 
       
-        if (rollingTimer <= 0)
-        {
-            playerSpeed = rollingSpeed;
-        }
+        //if (rollingTimer <= 0)
+        //{
+        //    playerSpeed = rollingSpeed;
+        //}
 
-        if (isRolling)
-        {
-            jumpTimer -= Time.deltaTime;
-            rollingTimer -= Time.deltaTime;
-        }
-        else
-        {
-            rollingTimer = 0.5f;
-            if (isGrounded)
-            {
-                jumpTimer = 1f;
-                playerSpeed = 6f;
-            
-            }
-        }
+        //if (isRolling)
+        //{
+        //    jumpTimer -= Time.deltaTime;
+        //    rollingTimer -= Time.deltaTime;
+        //}
+        //else
+        //{
+        //    rollingTimer = 0.5f;
+        //    if (isGrounded)
+        //    {
+        //        jumpTimer = 1f;
+        //        playerSpeed = 6f;
+        //    
+        //    }
+        //}
 
         if (isShowingGlass)
         {
