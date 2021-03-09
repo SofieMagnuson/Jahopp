@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
         jumpTimer = 0f;
         playerSpeed = 8f;
         rollingSpeed = 10f;
-        //rollingTimer = 0.5f;
+        rollingTimer = 0.5f;
         playerJump = 40f;
         isRolling = false;
         isGrounded = false;
@@ -57,37 +57,37 @@ public class PlayerScript : MonoBehaviour
             mySR.flipX = true;
         }
        
-        // if (Input.GetKey(KeyCode.Space) && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 1))
-       // {
-        //    isRolling = true;
-        //}
-        //else
-        //{
-        //    isRolling = false;
+        if (Input.GetKey(KeyCode.Space) && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 1))
+        {
+            isRolling = true;
+        }
+        else
+        {
+            isRolling = false;
           
-        //}
+        }
 
       
-        //if (rollingTimer <= 0)
-        //{
-        //    playerSpeed = rollingSpeed;
-        //}
+        if (rollingTimer <= 0)
+        {
+           playerSpeed = rollingSpeed;
+        }
 
-        //if (isRolling)
-        //{
-        //    jumpTimer -= Time.deltaTime;
-        //    rollingTimer -= Time.deltaTime;
-        //}
-        //else
-        //{
-        //    rollingTimer = 0.5f;
-        //    if (isGrounded)
-        //    {
-        //        jumpTimer = 1f;
-        //        playerSpeed = 6f;
-        //    
-        //    }
-        //}
+        if (isRolling)
+        {
+            jumpTimer -= Time.deltaTime;
+            rollingTimer -= Time.deltaTime;
+        }
+        else
+        {
+            rollingTimer = 0.5f;
+            if (isGrounded)
+            {
+                jumpTimer = 1f;
+                playerSpeed = 6f;
+           
+           }
+        }
 
         if (isShowingGlass)
         {
@@ -117,16 +117,16 @@ public class PlayerScript : MonoBehaviour
         {
             if (isWallJumpingRight)
             {
-                //jumpsLeft = 1;
+                jumpsLeft = 1;
                 myRB.velocity.Set(-12, playerJump +2);
-                //myRB.AddForce(new Vector2(-12, playerJump + 4), ForceMode2D.Impulse);
+                myRB.AddForce(new Vector2(-12, playerJump + 4), ForceMode2D.Impulse);
 
             }
             else if (isWallJumpingLeft)
             {
-                //jumpsLeft = 1;
+                jumpsLeft = 1;
                 myRB.velocity.Set(12, playerJump + 2);
-                //myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
+                myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
 
                 
 
