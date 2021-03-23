@@ -18,7 +18,7 @@ public class CameraMovement : MonoBehaviour
         cam = GameObject.Find("MainCamera").GetComponent<Camera>();
         glass = GameObject.Find("BrokenGlass2");
 
-        offsetPos = new Vector3(7.6f, 5.5f, -5.8f);
+        offsetPos = new Vector3(7.6f, 3.5f, -5.8f); 
         offsetLookingUp = new Vector3(9.2f, 7.5f, -3.8f);
         offsetRolling = new Vector3(6.8f, 3.5f, -3.8f);
 

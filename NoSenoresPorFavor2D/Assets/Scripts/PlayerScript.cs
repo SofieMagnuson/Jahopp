@@ -26,8 +26,8 @@ public class PlayerScript : MonoBehaviour
         mySR = GetComponent<SpriteRenderer>();
 
         jumpTimer = 0f;
-        playerSpeed = 8f;
-        rollingSpeed = 10f;
+        playerSpeed = 9f;
+        rollingSpeed = 11f;
         rollingTimer = 0.5f;
         playerJump = 40f;
         isRolling = false;
@@ -36,17 +36,20 @@ public class PlayerScript : MonoBehaviour
         showedGlass = false;
         jumpsLeft = 2;
         startPos = new Vector3(-8.39f, -1.865f, -0.1f);
-        checkpoint = new Vector3(99.2f, 25.09658f, -0.1f);
+        checkpoint = new Vector3(86.2f, 25.09658f, -0.1f);
        
         
     }
 
     void Update()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        transform.position += movement * Time.deltaTime * playerSpeed;
-        
 
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        if (!isShowingGlass)
+        {
+            transform.position += movement * Time.deltaTime * playerSpeed;
+        }
+        
 
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
@@ -57,7 +60,7 @@ public class PlayerScript : MonoBehaviour
             mySR.flipX = true;
         }
        
-        if (Input.GetKey(KeyCode.Space) && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 1))
+        if (Input.GetKey(KeyCode.RightShift) && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 1))
         {
             isRolling = true;
         }
@@ -97,16 +100,14 @@ public class PlayerScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && jumpsLeft != 0)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft != 0 && !isRolling)
         {
             myRB.velocity = new Vector2(myRB.velocity.x, 0);
             myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
             isGrounded = false;
             jumpsLeft -= 1;
-         
-
         }
-        else if (Input.GetKeyUp(KeyCode.Space) && jumpsLeft != 0 && jumpTimer <= 0)
+        else if (Input.GetKeyUp(KeyCode.RightShift) && jumpsLeft != 0 && jumpTimer <= 0)
         {
             myRB.velocity = new Vector2(myRB.velocity.x, 0);
             myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
@@ -127,9 +128,6 @@ public class PlayerScript : MonoBehaviour
                 jumpsLeft = 1;
                 myRB.velocity.Set(12, playerJump + 2);
                 myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
-
-                
-
             }
 
         }
@@ -161,8 +159,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (col.gameObject.tag == "deadly")
         {
-            transform.position = startPos;
-            //transform.position = checkpoint;
+            transform.position = checkpoint;
 
             //loose life
         }
