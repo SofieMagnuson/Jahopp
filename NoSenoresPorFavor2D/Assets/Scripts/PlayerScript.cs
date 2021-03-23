@@ -135,15 +135,15 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name == "MiddleTree" && !isGrounded)
-        {
-            isWallJumpingRight = true;
-        }
-        if (col.gameObject.name == "FirstTree" && !isGrounded)
-        {
-            isWallJumpingLeft = true;
+        //if (col.gameObject.name == "MiddleTree" && !isGrounded)
+        //{
+        //    isWallJumpingRight = true;
+        //}
+        //if (col.gameObject.name == "FirstTree" && !isGrounded)
+        //{
+        //    isWallJumpingLeft = true;
 
-        }
+        //}
         if (col.gameObject.tag == "ground")
         {
             isGrounded = true;
