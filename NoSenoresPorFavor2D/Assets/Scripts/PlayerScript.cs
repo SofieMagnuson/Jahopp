@@ -122,13 +122,6 @@ public class PlayerScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        //if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft != 0 && !isRolling)
-        //{
-        //    myRB.velocity = new Vector2(myRB.velocity.x, 0);
-        //    myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
-        //    isGrounded = false;
-        //    jumpsLeft -= 1;
-        //}
         if (Input.GetKeyUp(KeyCode.RightShift) && jumpsLeft != 0 && jumpTimer <= 0)
         {
             myRB.velocity = new Vector2(myRB.velocity.x, 0);
@@ -136,47 +129,13 @@ public class PlayerScript : MonoBehaviour
             isGrounded = false;
             jumpsLeft -= 1;
         }
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    if (isWallJumpingRight)
-        //    {
-        //        jumpsLeft = 1;
-        //        myRB.velocity.Set(-12, playerJump +2);
-        //        myRB.AddForce(new Vector2(-12, playerJump + 4), ForceMode2D.Impulse);
-
-        //    }
-        //    else if (isWallJumpingLeft)
-        //    {
-        //        jumpsLeft = 1;
-        //        myRB.velocity.Set(12, playerJump + 2);
-        //        myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
-        //    }
-        //}
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        //if (col.gameObject.name == "MiddleTree" && !isGrounded)
-        //{
-        //    isWallJumpingRight = true;
-        //}
-        //if (col.gameObject.name == "FirstTree" && !isGrounded)
-        //{
-        //    isWallJumpingLeft = true;
-
-        //}
         if (col.gameObject.tag == "ground")
         {
             isGrounded = true;
-            //jumpsLeft = 2;
-        }
-        if (col.gameObject.tag == "wall")
-        {
-            //jumpsLeft = 1;
-        }
-        if (col.gameObject.tag == "specialwall")
-        {
-            //jumpsLeft = 2;
         }
         if (col.gameObject.tag == "deadly")
         {
