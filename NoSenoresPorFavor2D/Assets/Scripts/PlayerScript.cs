@@ -15,7 +15,7 @@ public class PlayerScript : MonoBehaviour
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
     public int jumpsLeft;
-    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight, isAtCheckpoint, isShowingGlass, showedGlass;
+    public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight, isAtCheckpoint, isShowingGlass, showedGlass, candoublejump;
     public Vector3 startPos, checkpoint;
  
  
@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour
         isGrounded = false;
         isShowingGlass = false;
         showedGlass = false;
-        jumpsLeft = 2;
+        //jumpsLeft = 2;
         startPos = new Vector3(-8.39f, -1.865f, -0.1f);
         checkpoint = new Vector3(86.2f, 25.09658f, -0.1f);
        
@@ -97,40 +97,61 @@ public class PlayerScript : MonoBehaviour
             myCamera.isShowingGlass = true;
             myCamera.ShowGlass();
         }
+
+        //hoppa
+        if (Input.GetKeyDown(KeyCode.Space) && !isRolling)
+        {
+            if (isGrounded)
+            {
+                myRB.velocity = new Vector2(myRB.velocity.x, 0);
+                myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
+                candoublejump = true;
+            }
+            else
+            {
+                if (candoublejump)
+                {
+                    myRB.velocity = new Vector2(myRB.velocity.x, 0);
+                    myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
+                    candoublejump = false;
+                }
+            }
+
+        }
     }
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft != 0 && !isRolling)
+
+        //if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft != 0 && !isRolling)
+        //{
+        //    myRB.velocity = new Vector2(myRB.velocity.x, 0);
+        //    myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
+        //    isGrounded = false;
+        //    jumpsLeft -= 1;
+        //}
+        if (Input.GetKeyUp(KeyCode.RightShift) && jumpsLeft != 0 && jumpTimer <= 0)
         {
             myRB.velocity = new Vector2(myRB.velocity.x, 0);
             myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
             isGrounded = false;
             jumpsLeft -= 1;
         }
-        else if (Input.GetKeyUp(KeyCode.RightShift) && jumpsLeft != 0 && jumpTimer <= 0)
-        {
-            myRB.velocity = new Vector2(myRB.velocity.x, 0);
-            myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
-            isGrounded = false;
-            jumpsLeft -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isWallJumpingRight)
-            {
-                jumpsLeft = 1;
-                myRB.velocity.Set(-12, playerJump +2);
-                myRB.AddForce(new Vector2(-12, playerJump + 4), ForceMode2D.Impulse);
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    if (isWallJumpingRight)
+        //    {
+        //        jumpsLeft = 1;
+        //        myRB.velocity.Set(-12, playerJump +2);
+        //        myRB.AddForce(new Vector2(-12, playerJump + 4), ForceMode2D.Impulse);
 
-            }
-            else if (isWallJumpingLeft)
-            {
-                jumpsLeft = 1;
-                myRB.velocity.Set(12, playerJump + 2);
-                myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
-            }
-
-        }
+        //    }
+        //    else if (isWallJumpingLeft)
+        //    {
+        //        jumpsLeft = 1;
+        //        myRB.velocity.Set(12, playerJump + 2);
+        //        myRB.AddForce(new Vector2(12, playerJump + 4), ForceMode2D.Impulse);
+        //    }
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -147,15 +168,15 @@ public class PlayerScript : MonoBehaviour
         if (col.gameObject.tag == "ground")
         {
             isGrounded = true;
-            jumpsLeft = 2;
+            //jumpsLeft = 2;
         }
         if (col.gameObject.tag == "wall")
         {
-            jumpsLeft = 1;
+            //jumpsLeft = 1;
         }
         if (col.gameObject.tag == "specialwall")
         {
-            jumpsLeft = 2;
+            //jumpsLeft = 2;
         }
         if (col.gameObject.tag == "deadly")
         {
@@ -220,48 +241,9 @@ public class PlayerScript : MonoBehaviour
         {
             isWallJumpingLeft = false;
         }
+        if (col.gameObject.tag == "ground")
+        {
+            isGrounded = false;
+        }
     }
-
-    
-
-
-    //private void OnTriggerEnter2D(Collider2D col)
-    //{
-    //    if (col.gameObject.name == "ground2")
-    //    {
-    //        myRB.gravityScale = 0;
-    //        myRB.velocity = Vector3.zero;
-    //        isJumping = true;
-    //        jumpTimer = 100f;
-    //        isGrabbingLedge = true;
-    //    }
-    //    if (col.gameObject.name == "enemy")
-    //    {
-    //        if (isRolling == true)
-    //        {
-    //            Destroy(col.gameObject);
-    //            //if(playerSpeed > 5f)
-    //            //{
-    //            //    playerSpeed = playerSpeed - 2f;
-    //            //    accelarationTimer = accelarationTimer - 4f;
-    //            //}
-    //        }
-    //    }
-    //    //if (col.gameObject.name == "wall")
-    //    //{
-    //    //    isCollidingRight = true;
-    //    //}
-    //}
-
-    //private void OnTriggerExit2D(Collider2D col)
-    //{
-    //    if (col.gameObject.name == "ground2")
-    //    {
-    //        myRB.gravityScale = 3;
-    //        isJumping = false;
-    //        jumpTimer = 0f;
-    //        isGrabbingLedge = false;
-    //    }
-    //}
-
 }
