@@ -14,7 +14,6 @@ public class PlayerScript : MonoBehaviour
     public float playerSpeed, rollingSpeed, playerJump, jumpTimer, rollingTimer;
     public bool isGrabbingLedge = false;
     public bool isPlayingAnim = false;
-    public int jumpsLeft;
     public bool isRolling, isGrounded, isCollidingLeft, isCollidingRight, isWallJumpingLeft, isWallJumpingRight, isAtCheckpoint, isShowingGlass, showedGlass, candoublejump;
     public Vector3 startPos, checkpoint;
  
@@ -34,7 +33,6 @@ public class PlayerScript : MonoBehaviour
         isGrounded = false;
         isShowingGlass = false;
         showedGlass = false;
-        //jumpsLeft = 2;
         startPos = new Vector3(-8.39f, -1.865f, -0.1f);
         checkpoint = new Vector3(86.2f, 25.09658f, -0.1f);
        
@@ -122,12 +120,12 @@ public class PlayerScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Input.GetKeyUp(KeyCode.RightShift) && jumpsLeft != 0 && jumpTimer <= 0)
+        if (Input.GetKeyUp(KeyCode.RightShift) && jumpTimer <= 0 && isGrounded)
         {
             myRB.velocity = new Vector2(myRB.velocity.x, 0);
             myRB.AddForce(new Vector2(0, playerJump), ForceMode2D.Impulse);
             isGrounded = false;
-            jumpsLeft -= 1;
+            candoublejump = true;
         }
     }
 
@@ -139,14 +137,22 @@ public class PlayerScript : MonoBehaviour
         }
         if (col.gameObject.tag == "deadly")
         {
-            transform.position = checkpoint;
-
-            //loose life
+            transform.position = startPos;
         }
         if (col.gameObject.tag == "deadly2")
         {
             transform.position = checkpoint;
-            //loose life
+        }
+        if (col.gameObject.tag == "enemy")
+        {
+            if (isRolling)
+            {
+                Destroy(col.gameObject);
+            }
+            else
+            {
+                transform.position = checkpoint;
+            }
         }
         if (col.gameObject.name == "step1")
         {
@@ -192,14 +198,6 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.name == "MiddleTree")
-        {
-            isWallJumpingRight = false;
-        }
-        if (col.gameObject.name == "FirstTree")
-        {
-            isWallJumpingLeft = false;
-        }
         if (col.gameObject.tag == "ground")
         {
             isGrounded = false;

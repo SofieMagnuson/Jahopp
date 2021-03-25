@@ -11,6 +11,7 @@ TagManager:
   - deadly2
   - Checkpoint
   - WinningCheckpoint
+  - enemy
   layers:
   - Default
   - TransparentFX
